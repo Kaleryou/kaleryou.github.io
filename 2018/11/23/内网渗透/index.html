@@ -193,7 +193,7 @@
 <h5 id="凭证收集-Windoes账户密码"><a href="#凭证收集-Windoes账户密码" class="headerlink" title="凭证收集-Windoes账户密码"></a><strong>凭证收集-Windoes账户密码</strong></h5><p>​    Windows用户的密码加密后一般有两种形式：NTLM Hash和    LM Hash，从wv和2008开始，LM Hash被取消，这些hash有两个存储的地方：对于本地用户，存储在SAM数据库中，对于域用户则存储在域控制器的NTDS.dit数据库中。当用户登录时，这些hash也可能贮存在内存中，能够被我们抓取到。    </p>
 <p><strong>SAM</strong></p>
 <p>SAM全称安全账户管理器，是Windoes中存储用户密码的数据库文件，用户密码以散列格式存储在注册表配置单元中。这个文件可以在<strong><em>%SystemRoot%/system32/config/SAM</em></strong>中找到，并且挂载在HKLM/SAM上。</p>
-<p>hash提取</p>
+<p><strong>hash提取</strong></p>
 <p><strong>UAC</strong></p>
 <p>UAC这个名字初次听可能会陌生，但是几乎我们所有人都接触过。回想一下，当我们右键某个可执行文件，选择以管理员身份运行，就会弹出一个对话框，语句权限不同，可能要我们输入管理员凭据，也可能询问我们是否允许该程序进行更改。这就是UAC。</p>
 
