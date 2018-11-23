@@ -152,28 +152,31 @@
 
         <div id="main">
             <div class="post_page_title_img" style="height: 25rem;background-image: url(http://pics.sc.chinaz.com/files/pic/pic9/201809/zzpic14344.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;">
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2></h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2>内网渗透</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h3 id="一、常见的内网信息收集方式"><a href="#一、常见的内网信息收集方式" class="headerlink" title="一、常见的内网信息收集方式"></a>一、常见的内网信息收集方式</h3><p>​    首先我们需要知道Windoes的认证方式有Kerberos，NTLM，Digest SSP三种，其工作原理将在之后的博客中专门讲述。</p>
-<h4 id="Windoes下信息收集"><a href="#Windoes下信息收集" class="headerlink" title="Windoes下信息收集"></a>Windoes下信息收集</h4><p>​    <strong>systeminfo**</strong>：**显示有关计算机及其操作系统的详细配置信息，包括操作系统配置，安全信息，产品ID和硬件属性(如RAM，硬盘空间和网卡)</p>
-<p>​    <strong>whoami**</strong>：**显示当前登陆到本地系统用户的用户，组和权限信息。如果没有参数使用，此命令会显示当前的域和用户名</p>
+                <h2 id="常见的内网信息收集方式"><a href="#常见的内网信息收集方式" class="headerlink" title="常见的内网信息收集方式"></a><strong>常见的内网信息收集方式</strong></h2><hr>
+<p>​    首先我们需要知道Windoes的认证方式有<strong><u>Kerberos</u></strong>，<strong><u>NTLM</u></strong>，<strong><u>Digest SSP</u></strong>三种，其工作原理将在之后的博客中专门讲述。</p>
+<blockquote>
+<h4 id="Windoes下信息收集"><a href="#Windoes下信息收集" class="headerlink" title="Windoes下信息收集"></a>Windoes下信息收集</h4></blockquote>
+<p>​    <strong>systeminfo：</strong>显示有关计算机及其操作系统的详细配置信息，包括操作系统配置，安全信息，产品ID和硬件属性(如RAM，硬盘空间和网卡)</p>
+<p>​    <strong>whoami：</strong>显示当前登陆到本地系统用户的用户，组和权限信息。如果没有参数使用，此命令会显示当前的域和用户名</p>
 <p>​        whoami /user：查看当前用户的用户名和sid</p>
 <p>​        whoami /groups：查看当前用户所属的用户组</p>
 <p>​        whoami /priv：查看当前用户权限</p>
-<p>​    <strong>Net user**</strong>：**添加或修改账户或显示用户账户信息</p>
+<p>​    <strong>Net user：</strong>添加或修改账户或显示用户账户信息</p>
 <p>​        net user：查看本机用户</p>
 <p>​        net user “admin”：查看admin用户的详细信息</p>
 <p>​        net user /domain：查看域中的用户</p>
-<p>​    <strong>Net localgroup**</strong>：**添加，显示或修改本地组    </p>
+<p>​    <strong>Net localgroup</strong>：添加，显示或修改本地组    </p>
 <p>​        net localgroup “administrators”：查看administrator组的信息及成员</p>
 <p>​    <strong>Net group：</strong>添加，显示或修改域中的全局组</p>
 <p>​        net group /domain：查看域中的用户组</p>
 <p>​        net group “domain admin” /domain：获得域管理员列表</p>
 <p>​        net group “domain controllers” /domain：获得域控列表</p>
 <p>​        net group “domain computers” /domain：获得所有与成员计算机列表</p>
-<p>​    <strong>**Net accounts：</strong>更新用户账户数据库并修改所有账户的密码和登陆要求。可以用来查看密码策略等信息</p>
+<p>​    <strong>Net accounts：</strong>更新用户账户数据库并修改所有账户的密码和登陆要求。可以用来查看密码策略等信息</p>
 <p>​        net account /domain 获得域密码策略设置，密码长短等信息</p>
 <p>​    <strong>ipconfig</strong>：显示当前的TCP/IP网略配置</p>
 <p>​        ipconfig /all：显示所有适配器设置</p>
@@ -188,6 +191,11 @@
 <p>​    <strong>Net share：</strong>管理共享资源</p>
 <p>​        net share c$：查看c$共享的信息</p>
 <h5 id="凭证收集-Windoes账户密码"><a href="#凭证收集-Windoes账户密码" class="headerlink" title="凭证收集-Windoes账户密码"></a><strong>凭证收集-Windoes账户密码</strong></h5><p>​    Windows用户的密码加密后一般有两种形式：NTLM Hash和    LM Hash，从wv和2008开始，LM Hash被取消，这些hash有两个存储的地方：对于本地用户，存储在SAM数据库中，对于域用户则存储在域控制器的NTDS.dit数据库中。当用户登录时，这些hash也可能贮存在内存中，能够被我们抓取到。    </p>
+<p><strong>SAM</strong></p>
+<p>SAM全称安全账户管理器，是Windoes中存储用户密码的数据库文件，用户密码以散列格式存储在注册表配置单元中。这个文件可以在<strong><em>%SystemRoot%/system32/config/SAM</em></strong>中找到，并且挂载在HKLM/SAM上。</p>
+<p>hash提取</p>
+<p><strong>UAC</strong></p>
+<p>UAC这个名字初次听可能会陌生，但是几乎我们所有人都接触过。回想一下，当我们右键某个可执行文件，选择以管理员身份运行，就会弹出一个对话框，语句权限不同，可能要我们输入管理员凭据，也可能询问我们是否允许该程序进行更改。这就是UAC。</p>
 
             </div>
 
