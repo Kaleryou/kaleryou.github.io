@@ -156,7 +156,64 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                
+                <blockquote>
+<p>现在想想写这两篇对于我工作用处为零的网络协议的意义，可能是因为想要提升一下？毕竟只是测试未测试过的网络的话，确实没有什么挑战的。顺便复习一下网络知识。明天就是fit大会了，要去做苦工了。实习生真难QAQ</p>
+</blockquote>
+<h2 id="传输层协议安全"><a href="#传输层协议安全" class="headerlink" title="传输层协议安全"></a>传输层协议安全</h2><h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>TCP在IP网络层之上的传输层协议，用于提供端到端面向连接的可靠的字节流传输</p>
+<p>关键字：端到端，可靠，字节流</p>
+<h4 id="TCP首部格式"><a href="#TCP首部格式" class="headerlink" title="TCP首部格式"></a>TCP首部格式</h4><p><img src="C:\Users\root\AppData\Roaming\Typora\typora-user-images\1544413663698.png" alt="1544413663698"></p>
+<h4 id="三次握手四次挥手"><a href="#三次握手四次挥手" class="headerlink" title="三次握手四次挥手"></a>三次握手四次挥手</h4><h4 id="TCP标志位"><a href="#TCP标志位" class="headerlink" title="TCP标志位"></a>TCP标志位</h4><p>URG：紧急指针</p>
+<p>ACK：确认</p>
+<p>PSH：优先推送</p>
+<p>SYN：同步序号</p>
+<p>FIN：同步字节流</p>
+<h3 id="TCP相关攻击"><a href="#TCP相关攻击" class="headerlink" title="TCP相关攻击"></a>TCP相关攻击</h3><h4 id="TCP-RST攻击"><a href="#TCP-RST攻击" class="headerlink" title="TCP RST攻击"></a>TCP RST攻击</h4><h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>第三方伪造TCP包，使得双方异常的断开</p>
+<h5 id="RST攻击数据包伪造"><a href="#RST攻击数据包伪造" class="headerlink" title="RST攻击数据包伪造"></a>RST攻击数据包伪造</h5><p>IP头、TCP头  IP Address&amp;Source Port </p>
+<p>seq</p>
+<h5 id="攻击演示"><a href="#攻击演示" class="headerlink" title="攻击演示"></a>攻击演示</h5><p>netwox 78 –help2</p>
+<p>hping3 -R -c 10 -l wlan0 192.168.0.101</p>
+<h4 id="TCP-SYN-Flood攻击"><a href="#TCP-SYN-Flood攻击" class="headerlink" title="TCP SYN Flood攻击"></a>TCP SYN Flood攻击</h4><p>DoS(拒绝服务)攻击</p>
+<p>服务器TCP连接资源耗尽</p>
+<h5 id="SYN-Flood原理"><a href="#SYN-Flood原理" class="headerlink" title="SYN Flood原理"></a>SYN Flood原理</h5><p><strong>Half-Open</strong> </p>
+<p>Timer</p>
+<p>超时重传</p>
+<p><strong>分配内核资源维护Half-Open</strong></p>
+<p><strong>大量的伪造源地址的SYN连接请求</strong></p>
+<h5 id="攻击演示-1"><a href="#攻击演示-1" class="headerlink" title="攻击演示"></a>攻击演示</h5><p>netwox 76 -i “192.168.0.101” -p 80</p>
+<p>hping3 -S -I wlan0 192.168.0.101 –flood</p>
+<h5 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h5><p><strong>基本源认证</strong></p>
+<p>替服务器向客户端响应SUN-ACK报文</p>
+<p>报文中带有错误的确认序号</p>
+<p><strong>高级源认证</strong></p>
+<p>报文中带有正确的确认序号</p>
+<p><strong>首包丢弃</strong></p>
+<p>第一个SYN报文直接丢弃</p>
+<p>然后观察客户端是否重传</p>
+<h4 id="TCP会话劫持"><a href="#TCP会话劫持" class="headerlink" title="TCP会话劫持"></a>TCP会话劫持</h4><h5 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h5><p>中间人攻击 or 注射式攻击(双方正常的通讯流插入恶意数据)</p>
+<p>主动  or  被动</p>
+<h5 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h5><p>结合IP源地址欺骗，嗅探技术</p>
+<p>猜测初始序列号</p>
+<p>假冒通信方建立起的TCP会话</p>
+<h5 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h5><p>netwox 40 </p>
+<p>shijack</p>
+<h5 id="防御-1"><a href="#防御-1" class="headerlink" title="防御"></a>防御</h5><p><strong>使用交换式网络</strong></p>
+<p><strong>防范ARP欺骗</strong></p>
+<p><strong>使用加密通讯</strong></p>
+<p>使用SSH代替Telnet</p>
+<p>使用SSH代替HTTP</p>
+<p>使用IPSec/VPN</p>
+<p><strong>防火墙配置</strong></p>
+<p>限制尽可能少量的外部许可连接的IP地址</p>
+<p><strong>检测</strong></p>
+<p>ACK风暴：ACK包的数量明显增加</p>
+<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>关键字：无连接，不可靠</p>
+<h4 id="首部格式"><a href="#首部格式" class="headerlink" title="首部格式"></a>首部格式</h4><p>源端口</p>
+<p>目的端口</p>
+<p>报文长度</p>
+<p>校验和</p>
+<h4 id="相关攻击"><a href="#相关攻击" class="headerlink" title="相关攻击"></a>相关攻击</h4><p>UDP Flood攻击</p>
+<p>基于UDP的反射放大攻击</p>
+
             </div>
 
             <!-- Post Comments -->
