@@ -152,11 +152,14 @@
 
         <div id="main">
             <div class="post_page_title_img" style="height: 25rem;background-image: url(http://wx1.sinaimg.cn/large/d2e27164gy1fbtny6yzxdj21kw13xkjm.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;">
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2>优质漏洞分享_实时更新</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2>singularity漏洞分享_实时更新</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <table>
+                <blockquote>
+<p>主要是记录一些不常见，看一眼就会忘的那种漏洞</p>
+</blockquote>
+<table>
 <thead>
 <tr>
 <th>目录</th>
@@ -181,6 +184,14 @@
 </tbody>
 </table>
 <p>##</p>
+<p>##一、子域名劫持</p>
+<blockquote>
+<blockquote>
+<p>此处以某SRC为例，探究子域名劫持的原理及危害</p>
+</blockquote>
+</blockquote>
+<p>###原理<br>某域名(子域名)在更换CDN时，未及时更新CNAME记录，导致CNAME记录仍然存在，攻击者可以在网宿CDN绑定上改域名，从而劫持改子域名。分析使用dig命令</p>
+<p>###探究<br>1、使用dig探测某子域名，img1.aim.com,发现状态为NXDOMAIN(意为域名不存在，Non-Existent)，域名服务器声明查询域名确实是自己所解析，但是自己的记录里没有这个域名</p>
 
             </div>
 
