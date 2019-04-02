@@ -184,6 +184,7 @@
 </tbody>
 </table>
 <p>##</p>
+<p><img src="singularity-1.png" alt="singularity-1"></p>
 <p>##一、子域名劫持</p>
 <blockquote>
 <blockquote>
@@ -192,6 +193,7 @@
 </blockquote>
 <p>###原理<br>某域名(子域名)在更换CDN时，未及时更新CNAME记录，导致CNAME记录仍然存在，攻击者可以在网宿CDN绑定上改域名，从而劫持改子域名。分析使用dig命令</p>
 <p>###探究<br>1、使用dig探测某子域名，img1.aim.com,发现状态为NXDOMAIN(意为域名不存在，Non-Existent)，域名服务器声明查询域名确实是自己所解析，但是自己的记录里没有这个域名</p>
+<p><a href="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/singularity-1.png" target="_blank" rel="noopener">https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/singularity-1.png</a></p>
 
             </div>
 
