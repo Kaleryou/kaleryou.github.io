@@ -186,10 +186,10 @@
 <h2 id="一、子域名劫持"><a href="#一、子域名劫持" class="headerlink" title="一、子域名劫持"></a>一、子域名劫持</h2><blockquote>
 <p>此处以某SRC为例，探究子域名劫持的原理及危害</p>
 </blockquote>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>某域名(子域名)在更换CDN时，未及时更新CNAME记录，导致CNAME记录仍然存在，攻击者可以在网宿CDN绑定上改域名，从而劫持改子域名。分析使用dig命令</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>某域名(子域名)在更换CDN时，未及时更新CNAME记录，导致CNAME记录仍然存在，攻击者可以在网宿CDN绑定上该域名，从而劫持该子域名。分析使用dig命令</p>
 <h4 id="探究"><a href="#探究" class="headerlink" title="探究"></a>探究</h4><p>1、使用dig探测某子域名，img1.aim.com,发现状态为NXDOMAIN(意为域名不存在，Non-Existent)，域名服务器声明查询域名确实是自己所解析，但是自己的记录里没有这个域名</p>
 <p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/singularity-1.png" alt="singularity-1"><br>2、可以看出域名img1.aim.com的CNAME记录指向 img1.aim.com.wswebpic.com，而网宿的DNS “img1.aim.com.wswebpic.com” 已不支持解析该DNS请求，CDN加速业务已停止<br>以下是dig检测该域名 img.aim.com的追踪DNS解析全过程如下：<br><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/singularity-2.png" alt="singularity-2"><br><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/singularity-3.png" alt="singularity-3"><br>3、攻击者可以在网宿CDN购买套餐，并绑定该域名，从而劫持该域名</p>
-<h4 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h4><p>在更换CDN时，即使更新相关DNS记录配置</p>
+<h4 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h4><p>在更换CDN时，及时更新相关DNS记录配置</p>
 
             </div>
 
